@@ -26,7 +26,8 @@ LOCAL_MODULE:= libqcompostprocbundle
 
 LOCAL_C_INCLUDES := \
 	external/tinyalsa/include \
-	$(call include-path-for, audio-effects)
+	$(call include-path-for, audio-effects) \
+        $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
 
 include $(BUILD_SHARED_LIBRARY)
 endif
@@ -54,7 +55,8 @@ LOCAL_MODULE:= libvolumelistener
 
 LOCAL_C_INCLUDES := \
         hardware/qcom/audio/hal \
-	$(call include-path-for, audio-effects)
+	$(call include-path-for, audio-effects) \
+        $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
 
 include $(BUILD_SHARED_LIBRARY)
 
