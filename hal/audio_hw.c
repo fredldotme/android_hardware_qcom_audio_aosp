@@ -3033,6 +3033,8 @@ static int adev_open_output_stream(struct audio_hw_device *dev,
                 out->format = audio_format_from_pcm_format(out->config.format);
             }
         }
+        if (config->sample_rate != 0)
+            out->config.rate = config->sample_rate;
         out->sample_rate = out->config.rate;
     }
     ALOGV("%s: Usecase(%s) config->format %#x  out->config.format %#x\n",
