@@ -1404,6 +1404,7 @@ int platform_set_voice_volume(void *platform, int volume)
     struct mixer_ctl *ctl;
     const char *mixer_ctl_name = "Voice Rx Gain";
     int vol_index = 0, ret = 0;
+    float gain_factor;
     uint32_t set_values[ ] = {0,
                               ALL_SESSION_VSID,
                               DEFAULT_VOLUME_RAMP_DURATION_MS};
@@ -1411,7 +1412,9 @@ int platform_set_voice_volume(void *platform, int volume)
     // Voice volume levels are mapped to adsp volume levels as follows.
     // 100 -> 5, 80 -> 4, 60 -> 3, 40 -> 2, 20 -> 1  0 -> 0
     // But this values don't changed in kernel. So, below change is need.
-    vol_index = (int)percent_to_index(volume, MIN_VOL_INDEX, my_data->max_vol_index);
+    // vol_index = (int)percent_to_index(volume, MIN_VOL_INDEX, my_data->max_vol_index);
+    gain_factor = ((float)volume)/100.0f;
+    vol_index = (int)(5.0f * gain_factor);
     set_values[0] = vol_index;
 
     ctl = mixer_get_ctl_by_name(adev->mixer, mixer_ctl_name);
