@@ -1405,7 +1405,7 @@ int platform_set_voice_volume(void *platform, int volume)
     const char *mixer_ctl_name = "Voice Rx Gain";
     int vol_index = 0, ret = 0;
     float gain_factor;
-    uint32_t set_values[ ] = {0,
+    long int set_values[ ] = {0,
                               ALL_SESSION_VSID,
                               DEFAULT_VOLUME_RAMP_DURATION_MS};
 
@@ -1436,7 +1436,7 @@ int platform_set_mic_mute(void *platform, bool state)
     struct mixer_ctl *ctl;
     const char *mixer_ctl_name = "Voice Tx Mute";
     int ret = 0;
-    uint32_t set_values[ ] = {0,
+    long int set_values[ ] = {0,
                               ALL_SESSION_VSID,
                               DEFAULT_MUTE_RAMP_DURATION_MS};
 
@@ -1466,7 +1466,7 @@ int platform_set_device_mute(void *platform, bool state, char *dir)
     struct mixer_ctl *ctl;
     char *mixer_ctl_name = NULL;
     int ret = 0;
-    uint32_t set_values[ ] = {0,
+    long int set_values[ ] = {0,
                               ALL_SESSION_VSID,
                               0};
     if(dir == NULL) {
